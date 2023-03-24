@@ -1,6 +1,7 @@
 package ru.netology.stats;
 
 public class StatsService {
+
     // метод для вычисления суммы всех продаж
     public long calculateTotalSum(long[] sales) {
         long sum = 0;
@@ -12,10 +13,7 @@ public class StatsService {
 
     // метод для вычисления средней суммы продаж в месяц
     public long calculateAverageSum(long[] sales) {
-        long sum = 0;
-        for (long sale : sales) {
-            sum = sum + sale;
-        }
+        long sum = calculateTotalSum(sales);
         return sum / sales.length;
     }
 
@@ -43,13 +41,8 @@ public class StatsService {
 
     // метод для вычисления количества месяцев, в которых продажи были ниже среднего
     public int calculateBelowAverage(long[] sales) {
-        long sum = 0;
-        int average = 0;
+        long average = calculateAverageSum(sales);
         int count = 0;
-        for (long sale : sales) {
-            sum = sum + sale;
-            average = (int) (sum / sales.length);
-        }
         for (long sale : sales) {
             if (sale < average) {
                 count++;
@@ -60,13 +53,8 @@ public class StatsService {
 
     //метод для вычисления количества месяцев, в которых продажи были выше среднего
     public int calculateUpperAverage(long[] sales) {
-        long sum = 0;
-        int average = 0;
+        long average = calculateAverageSum(sales);
         int count = 0;
-        for (long sale : sales) {
-            sum = sum + sale;
-            average = (int) (sum / sales.length);
-        }
         for (long sale : sales) {
             if (sale > average) {
                 count++;
